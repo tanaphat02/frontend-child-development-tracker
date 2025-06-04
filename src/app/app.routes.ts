@@ -12,35 +12,41 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    title: 'kidsteps | ล็อกอิน'
   },
   {
     path: '',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [{ path: '', component: DashboardComponent }],
+    title: 'kidsteps | Dashboard'
   },
   {
     path: 'add-child',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [{ path: '', component: AddChildComponent }],
+    title: 'kidsteps | เพิ่มรายชื่อ'
   },
   {
     path: 'list',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [{ path: '', component: ListChildComponent }],
+    title: 'kidsteps | รายชื่อเด็ก'
   },
   {
     path: 'dashboard',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [{ path: '', component: DashboardComponent }],
+    title: 'kidsteps | Dashboard'
   },
   {
     path: 'record',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [{ path: '', component: RecordComponent }],
+    title: 'kidsteps | บันทึกการเจริญเติบโต'
   },
 ];
