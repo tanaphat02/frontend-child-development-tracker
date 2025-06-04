@@ -6,18 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LocationService {
+  private baseUrl = 'https://backend-child-development-tracker-production.up.railway.app/api/location'; 
+
   constructor(private http: HttpClient) { }
 
   getProvinces(): Observable<any> {
-    return this.http.get<any>('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json');
+    return this.http.get<any>(`${this.baseUrl}/provinces`);
   }
 
-  getDistricts(provinceCode: string): Observable<any> {
-    return this.http.get<any>(`https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json`);
+  getDistricts(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/districts`);
   }
 
-  getSubDistricts(districtCode: string): Observable<any> {
-    return this.http.get<any>(`https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json`);
+  getSubDistricts(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/sub-districts`);
   }
-  
 }
