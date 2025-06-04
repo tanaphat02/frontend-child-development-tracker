@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="page-title">Dashboard</h2>
+  <div class="center-content">
+    <div style="margin: 2rem">
+      <div style="display: flex; gap: 2rem">
+        <div>
+          <h4 style="text-align: center">แผนภาพแสดง น้ำหนักน้อย</h4>
+          <canvas baseChart [data]="barDataThin" [options]="barOptions" [type]="'bar'"></canvas>
+        </div>
+        <div>
+          <h4 style="text-align: center">แผนภาพแสดง น้ำหนักปกติ</h4>
+          <canvas baseChart [data]="barDataNormal" [options]="barOptions" [type]="'bar'"></canvas>
+        </div>
+        <div>
+          <h4 style="text-align: center">แผนภาพแสดง น้ำหนักเกิน</h4>
+          <canvas baseChart [data]="barDataFat" [options]="barOptions" [type]="'bar'"></canvas>
+        </div>
+      </div>
+      <div style="display: flex; gap: 2rem; margin-top: 3rem">
+        <div>
+          <h5 style="text-align: center">แผนภาพผลสัดส่วน นน. น้อย ทั้งปีทั้งหมด</h5>
+          <canvas baseChart [data]="doughnutDataThin" [options]="doughnutOptions" [type]="'doughnut'"></canvas>
+        </div>
+        <div>
+          <h5 style="text-align: center">แผนภาพผลสัดส่วน นน. ปกติ ทั้งปีทั้งหมด</h5>
+          <canvas baseChart [data]="doughnutDataNormal" [options]="doughnutOptions" [type]="'doughnut'"></canvas>
+        </div>
+        <div>
+          <h5 style="text-align: center">แผนภาพผลสัดส่วน นน. เกิน ทั้งปีทั้งหมด</h5>
+          <canvas baseChart [data]="doughnutDataFat" [options]="doughnutOptions" [type]="'doughnut'"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

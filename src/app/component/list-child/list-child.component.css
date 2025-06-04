@@ -1,0 +1,212 @@
+.container {
+  background-color: #f7f7f7;
+  padding: 3rem;
+  min-height: 81.2vh;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: "Sarabun", sans-serif;
+  font-style: normal;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.search-section input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  
+}
+
+.add-button {
+  background-color: #ffdf57;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.add-button:hover {
+  background-color: #ffd700;
+}
+
+.child-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+.child-table th,
+.child-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  font-family: 'Sarabun', sans-serif;
+}
+
+.child-table thead {
+  background-color: #f1f1f1;
+}
+
+.child-table td:last-child{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.child-table td:first-child{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.child-table td:nth-child(2) {
+  padding-left: 3rem;
+}
+
+
+.info-button {
+  background-color: #ffe68a;
+  border: 1px solid #e0d370;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.info-button:hover {
+  background-color: #ffd966;
+}
+
+.table-wrapper {
+  max-height: 590px; 
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.child-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f1f1f1;
+  z-index: 1;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+}
+
+
+.child-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+.child-section:last-child {
+  border-bottom: none;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  font-size: 3rem;
+  cursor: pointer;
+  color: #888;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.modal-content {
+  position: relative; /* เพิ่มเพื่อให้ .close ใช้ absolute ได้ */
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 600px;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.child-section-group {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 1.5rem;
+  flex-direction: row;
+  flex-flow: row wrap;
+  max-height: none;
+}
+
+.child-section {
+  flex: 1 1 40%;
+  min-width: 340px;
+  max-width: 48%;
+  margin-bottom: 1.5rem;
+  background: #fafbfc;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  padding: 1rem 1.2rem;
+  border-bottom: none;
+}
+
+@media (max-width: 1200px) {
+  .child-section {
+    min-width: 320px;
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .child-section-group {
+    flex-direction: row;
+  }
+}
+
+.child-section h4 {
+  margin-bottom: 0.5rem;
+  color: #1976d2;
+}
+
+.info-row {
+  margin-bottom: 0.3rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.info-row span {
+  font-weight: bold;
+  min-width: 120px;
+  display: inline-block;
+}
+
+.graph{
+  display:grid;
+  justify-content: center;
+}

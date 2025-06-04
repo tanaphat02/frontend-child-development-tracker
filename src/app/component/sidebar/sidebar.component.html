@@ -1,0 +1,18 @@
+<div class="sidebar">
+  <img src="assets/images/logo.png" alt="logo" class="logo" />
+  
+ <div class="menu-items">
+  <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <button>DASHBOARD</button>
+  </a>
+  <a routerLink="/list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <button>รายการเด็ก</button>
+  </a>
+  <a routerLink="/record" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <button>บันทึกการเจริญเติบโต</button>
+  </a>
+</div>
+
+
+  <button class="logout" (click)="onLogout()">LOGOUT <mat-icon>logout</mat-icon></button>
+</div>

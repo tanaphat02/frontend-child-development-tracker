@@ -1,0 +1,26 @@
+.container {
+  background-color: #f7f7f7;
+  padding: 3rem;
+  min-height: 81vh;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: "Sarabun", sans-serif;
+  font-style: normal;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+canvas {
+  min-height: 150px;
+  min-width: 200px;
+  display: block;
+} 

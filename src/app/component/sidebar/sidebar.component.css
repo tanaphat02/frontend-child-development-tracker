@@ -1,0 +1,66 @@
+.sidebar {
+  width: 250px;
+  background: #ffffff;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(213, 247, 158, 1) 74%,
+    rgba(247, 240, 186, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 95.5vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+button {
+  margin-bottom: 0.3rem;
+  padding: 10px;
+  border: none;
+  background-color: #ace7cc;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 1rem;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1rem;
+  border-radius: 10px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #a0dbb2;
+  transition: background-color 0.3s ease;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column; /* ✅ จัดแนวตั้ง */
+  gap: 10px; /* ✅ ระยะห่างระหว่างปุ่ม */
+  margin-top: 3rem;
+}
+
+.menu-items a {
+  text-decoration: none; /* ✅ ตัดขีดใต้ลิงก์ */
+}
+
+a.active button {
+  background-color: #a0dbb2;
+  color: #2b2b2b;
+  font-weight: bold;
+}
+
+.logout {
+  margin-top: auto !important;
+  background-color: #f88379 !important;
+  color: white !important;
+  text-align: center !important;
+  display: flex;             
+  align-items: center;        
+  justify-content: center;    
+  gap: 0.5rem;               
+}

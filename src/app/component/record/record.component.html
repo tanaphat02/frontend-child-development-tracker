@@ -1,0 +1,88 @@
+<div class="container">
+  <h2 class="page-title">บันทึกการเจริญเติบโต</h2>
+
+  <!-- Search + เพิ่มรายชื่อ -->
+  <div class="search-section">
+    <label>ค้นหาด้วยรายชื่อ</label>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="พิมพ์ชื่อเด็ก" />
+  </div>
+
+  <div class="table-wrapper">
+    <table class="child-table">
+      <thead>
+        <tr>
+          <th>รหัสเด็ก</th>
+          <th>ชื่อ-นามสกุล</th>
+          <th>น้ำหนัก</th>
+          <th>ส่วนสูง</th>
+          <th>น้ำหนักตามเกณฑ์ส่วนสูง</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let child of filteredChildren()">
+          <td>{{ child.id }}</td>
+          <td>
+            {{ child.prefix }}{{ child.first_name }} {{ child.last_name }}
+            <span *ngIf="latestRecords[child.id]?.recorded_at">
+              <br />
+              <small style="color: #888">
+                แก้ไขล่าสุด
+                {{
+                  latestRecords[child.id]?.recorded_at
+                    | date : "dd/MM/yyyy HH:mm"
+                }}
+              </small>
+            </span>
+          </td>
+          <td>
+            <input
+              class="input"
+              type="number"
+              [(ngModel)]="records[child.id].weight"
+              (input)="onInput(child)"
+              [placeholder]="latestRecords[child.id]?.weight_kg || ''"
+            />
+          </td>
+          <td>
+            <input
+              class="input"
+              type="number"
+              [(ngModel)]="records[child.id].height"
+              (input)="onInput(child)"
+              [placeholder]="latestRecords[child.id]?.height_cm || ''"
+            />
+          </td>
+          <td>
+            <ng-container *ngIf="records[child.id].bmi; else noBmi">
+              {{ getBmiStatus(records[child.id].bmi) }}
+            </ng-container>
+            <ng-template #noBmi>
+              <ng-container
+                *ngIf="
+                  latestRecords[child.id]?.weight_kg &&
+                    latestRecords[child.id]?.height_cm;
+                  else noData
+                "
+              >
+                {{
+                  getBmiStatus(
+                    calcBMI(
+                      latestRecords[child.id]?.weight_kg,
+                      latestRecords[child.id]?.height_cm
+                    )
+                  )
+                }}
+              </ng-container>
+              <ng-template #noData>
+                <span>ยังไม่มีข้อมูล</span>
+              </ng-template>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="button">
+    <button class="save" (click)="saveAll()">บันทึก</button>
+  </div>
+</div>

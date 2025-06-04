@@ -1,0 +1,588 @@
+<div class="add-child-container">
+  <h2 class="form-title">เพิ่มรายชื่อ</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="add-child-form">
+    <div formGroupName="childData">
+      <!-- ข้อมูลทั่วไป -->
+      <div class="section">
+        <h3>ข้อมูลทั่วไป</h3>
+        <div class="row">
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>คำนำหน้าชื่อ</mat-label>
+              <mat-select formControlName="prefix">
+                <mat-option value="">กรุณาเลือก</mat-option>
+                <mat-option value="เด็กชาย">เด็กชาย</mat-option>
+                <mat-option value="เด็กหญิง">เด็กหญิง</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ชื่อ</mat-label>
+              <input matInput type="text" formControlName="first_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>นามสกุล</mat-label>
+              <input matInput type="text" formControlName="last_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>โทรศัพท์</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="phone"
+                maxlength="10"
+              />
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('required')"
+              >
+                กรุณากรอกเบอร์โทรศัพท์
+              </mat-error>
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('pattern')"
+              >
+                เบอร์โทรต้องเป็นตัวเลข 10 หลัก
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>เลขบัตรประชาชน</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="citizen_id"
+              maxlength="13"
+            />
+            <mat-error
+              *ngIf="form.get('childData.citizen_id')?.hasError('required')"
+            >
+              กรุณากรอกเลขบัตรประชาชน
+            </mat-error>
+            <mat-error
+              *ngIf="form.get('childData.citizen_id')?.hasError('thaiId')"
+            >
+              เลขบัตรประชาชนต้องเป็นตัวเลข 13 หลัก
+            </mat-error>
+          </mat-form-field>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>เชื้อชาติ</mat-label>
+              <input matInput type="text" formControlName="ethnicity" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>เชื้อชาติ</mat-label>
+              <input matInput type="text" formControlName="ethnicity" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>สัญชาติ</mat-label>
+              <input matInput type="text" formControlName="nationality" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ศาสนา</mat-label>
+              <mat-select formControlName="religion">
+                <mat-option value="">กรุณาเลือก</mat-option>
+                <mat-option value="พุทธ">พุทธ</mat-option>
+                <mat-option value="คริสต์">คริสต์</mat-option>
+                <mat-option value="อิสลาม">อิสลาม</mat-option>
+                <mat-option value="อื่นๆ">อื่นๆ</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>หมู่เลือด</mat-label>
+              <mat-select formControlName="blood_type">
+                <mat-option value="">กรุณาเลือก</mat-option>
+                <mat-option value="A">A</mat-option>
+                <mat-option value="B">B</mat-option>
+                <mat-option value="AB">AB</mat-option>
+                <mat-option value="O">O</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>วันเดือนปีเกิด</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="birth_date"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error
+                *ngIf="form.get('childData.birth_date')?.hasError('required')"
+              >
+                กรุณากรอกวันเดือนปีเกิด
+              </mat-error>
+              <mat-error
+                *ngIf="form.get('childData.birth_date')?.hasError('futureDate')"
+              >
+                วันเกิดต้องไม่เกินวันปัจจุบัน
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- ที่อยู่ปัจจุบัน -->
+      <div class="section">
+        <h3>ที่อยู่ปัจจุบัน</h3>
+        <div class="address-grid" formGroupName="currentAddress">
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>บ้านเลขที่</mat-label>
+              <input matInput type="text" formControlName="house_no" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>หมู่ที่</mat-label>
+              <input matInput type="text" formControlName="village_no" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ถนน</mat-label>
+              <input matInput type="text" formControlName="road" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ซอย</mat-label>
+              <input matInput type="text" formControlName="alley" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>จังหวัด</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="province"
+                [matAutocomplete]="autoProvinceCurrent"
+              />
+              <mat-autocomplete
+                #autoProvinceCurrent="matAutocomplete"
+                (optionSelected)="onProvinceSelected($event.option.value)"
+              >
+                <mat-option
+                  *ngFor="let option of filteredProvince$ | async"
+                  [value]="option"
+                >
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อำเภอ/เขต</mat-label>
+              <mat-select
+                formControlName="district"
+                (selectionChange)="onDistrictSelected($event.value)"
+              >
+                <mat-option
+                  *ngFor="let district of districts"
+                  [value]="district.name_th"
+                >
+                  {{ district.name_th }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ตำบล/แขวง</mat-label>
+              <mat-select
+                formControlName="sub_district"
+                (selectionChange)="onSubDistrictSelected($event.value)"
+              >
+                <mat-option
+                  *ngFor="let subDistrict of subDistricts"
+                  [value]="subDistrict.name_th"
+                >
+                  {{ subDistrict.name_th }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>รหัสไปรษณีย์</mat-label>
+              <input matInput formControlName="postal_code" readonly />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <mat-checkbox
+        formControlName="sameAddress"
+        (change)="onSameAddressChange($event)"
+      >
+        ที่อยู่ตามทะเบียนบ้านเหมือนที่อยู่ปัจจุบัน
+      </mat-checkbox>
+
+      <!-- ที่อยู่ตามทะเบียนบ้าน -->
+      <div class="section">
+        <h3>ที่อยู่ตามทะเบียนบ้าน</h3>
+        <div class="address-grid" formGroupName="regAddress">
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>บ้านเลขที่</mat-label>
+              <input matInput type="text" formControlName="house_no" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>หมู่ที่</mat-label>
+              <input matInput type="text" formControlName="village_no" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ถนน</mat-label>
+              <input matInput type="text" formControlName="road" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ซอย</mat-label>
+              <input matInput type="text" formControlName="alley" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>จังหวัด</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="province"
+                [matAutocomplete]="autoProvinceReg"
+              />
+              <mat-autocomplete
+                #autoProvinceReg="matAutocomplete"
+                (optionSelected)="onProvinceSelected($event.option.value, true)"
+              >
+                <mat-option
+                  *ngFor="let option of filteredRegProvince$ | async"
+                  [value]="option"
+                >
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อำเภอ/เขต</mat-label>
+              <mat-select
+                formControlName="district"
+                (selectionChange)="onDistrictSelected($event.value, true)"
+              >
+                <mat-option
+                  *ngFor="let district of regDistricts"
+                  [value]="district.name_th"
+                >
+                  {{ district.name_th }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ตำบล/แขวง</mat-label>
+              <mat-select
+                formControlName="sub_district"
+                (selectionChange)="onSubDistrictSelected($event.value, true)"
+              >
+                <mat-option
+                  *ngFor="let subDistrict of regSubDistricts"
+                  [value]="subDistrict.name_th"
+                >
+                  {{ subDistrict.name_th }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>รหัสไปรษณีย์</mat-label>
+              <input matInput formControlName="postal_code" readonly />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- ข้อมูลบิดา -->
+      <div class="section">
+        <h3>ข้อมูลบิดา</h3>
+        <div class="row" formGroupName="father">
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>คำนำหน้าชื่อ</mat-label>
+              <mat-select formControlName="prefix">
+                <mat-option value="">กรุณาเลือก</mat-option>
+                <mat-option value="นาย">นาย</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ชื่อ</mat-label>
+              <input matInput type="text" formControlName="first_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>นามสกุล</mat-label>
+              <input matInput type="text" formControlName="last_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>โทรศัพท์</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="phone"
+                maxlength="10"
+              />
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('required')"
+              >
+                กรุณากรอกเบอร์โทรศัพท์
+              </mat-error>
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('pattern')"
+              >
+                เบอร์โทรต้องเป็นตัวเลข 10 หลัก
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อาชีพ</mat-label>
+              <input matInput type="text" formControlName="occupation" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>รายได้ต่อปี</mat-label>
+              <input matInput type="text" formControlName="income_per_year" />
+              <mat-error
+                *ngIf="
+                  form
+                    .get('childData.father.income_per_year')
+                    ?.hasError('pattern')
+                "
+              >
+                รายได้ต่อปีต้องเป็นตัวเลขเท่านั้น
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อายุ</mat-label>
+              <input matInput type="text" formControlName="age" />
+              <mat-error
+                *ngIf="form.get('childData.father.age')?.hasError('pattern')"
+              >
+                อายุต้องเป็นตัวเลขเท่านั้น
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- ข้อมูลมารดา -->
+      <div class="section">
+        <h3>ข้อมูลมารดา</h3>
+        <div class="row" formGroupName="mother">
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>คำนำหน้าชื่อ</mat-label>
+              <mat-select formControlName="prefix">
+                <mat-option value="">กรุณาเลือก</mat-option>
+                <mat-option value="นาง">นาง</mat-option>
+                <mat-option value="นางสาว">นางสาว</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ชื่อ</mat-label>
+              <input matInput type="text" formControlName="first_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>นามสกุล</mat-label>
+              <input matInput type="text" formControlName="last_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>โทรศัพท์</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="phone"
+                maxlength="10"
+              />
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('required')"
+              >
+                กรุณากรอกเบอร์โทรศัพท์
+              </mat-error>
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('pattern')"
+              >
+                เบอร์โทรต้องเป็นตัวเลข 10 หลัก
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อาชีพ</mat-label>
+              <input matInput type="text" formControlName="occupation" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>รายได้ต่อปี</mat-label>
+              <input matInput type="text" formControlName="income_per_year" />
+              <mat-error
+                *ngIf="
+                  form
+                    .get('childData.father.income_per_year')
+                    ?.hasError('pattern')
+                "
+              >
+                รายได้ต่อปีต้องเป็นตัวเลขเท่านั้น
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อายุ</mat-label>
+              <input matInput type="text" formControlName="age" />
+              <mat-error
+                *ngIf="form.get('childData.father.age')?.hasError('pattern')"
+              >
+                อายุต้องเป็นตัวเลขเท่านั้น
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- ข้อมูลผู้ปกครอง -->
+      <div class="section">
+        <h3>ข้อมูลผู้ปกครอง</h3>
+        <div class="row" formGroupName="guardian">
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>คำนำหน้าชื่อ</mat-label>
+              <mat-select formControlName="prefix">
+                <mat-option value="">กรุณาเลือก</mat-option>
+                <mat-option value="นาย">นาย</mat-option>
+                <mat-option value="นาง">นาง</mat-option>
+                <mat-option value="นางสาว">นางสาว</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ชื่อ</mat-label>
+              <input matInput type="text" formControlName="first_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>นามสกุล</mat-label>
+              <input matInput type="text" formControlName="last_name" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>โทรศัพท์</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="phone"
+                maxlength="10"
+              />
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('required')"
+              >
+                กรุณากรอกเบอร์โทรศัพท์
+              </mat-error>
+              <mat-error
+                *ngIf="form.get('childData.phone')?.hasError('pattern')"
+              >
+                เบอร์โทรต้องเป็นตัวเลข 10 หลัก
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อาชีพ</mat-label>
+              <input matInput type="text" formControlName="occupation" />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>รายได้ต่อปี</mat-label>
+              <input matInput type="text" formControlName="income_per_year" />
+              <mat-error
+                *ngIf="
+                  form
+                    .get('childData.father.income_per_year')
+                    ?.hasError('pattern')
+                "
+              >
+                รายได้ต่อปีต้องเป็นตัวเลขเท่านั้น
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>อายุ</mat-label>
+              <input matInput type="text" formControlName="age" />
+              <mat-error
+                *ngIf="form.get('childData.father.age')?.hasError('pattern')"
+              >
+                อายุต้องเป็นตัวเลขเท่านั้น
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>ความเกี่ยวข้อง</mat-label>
+              <input matInput type="text" formControlName="relationship" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-btn">
+      <button type="submit" class="save-btn">บันทึก</button>
+    </div>
+  </form>
+</div>

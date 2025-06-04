@@ -1,0 +1,211 @@
+<div class="container">
+  <h2 class="page-title">รายการเด็ก</h2>
+
+  <!-- Search + เพิ่มรายชื่อ -->
+  <div class="search-section">
+    <label>ค้นหาด้วยรายชื่อ</label>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="พิมพ์ชื่อเพื่อค้นหา"
+    />
+    <button class="add-button" (click)="onAddChild()">เพิ่มรายชื่อ</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="child-table">
+      <thead>
+        <tr>
+          <th>รหัสเด็ก</th>
+          <th>ชื่อ-นามสกุล</th>
+          <th>ข้อมูลบุคคล</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let child of filteredChildren()">
+          <td>{{ child.id }}</td>
+          <td>
+            {{ child.prefix }}{{ child.first_name }} {{ child.last_name }}
+          </td>
+          <td>
+            <button class="info-button" (click)="viewChild(child)">
+              ข้อมูลบุคคล
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div
+  class="modal"
+  *ngIf="selectedChild"
+  (click)="onModalBackgroundClick($event)"
+>
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>ข้อมูลบุคคล</h3>
+    <div class="child-section-group">
+      <div class="child-section">
+        <h4>ข้อมูลเด็ก</h4>
+        <div class="info-row">
+          <span>รหัสเด็ก:</span> {{ selectedChild.id }}
+        </div>
+        <div class="info-row">
+          <span>ชื่อ-นามสกุล:</span> {{ selectedChild.prefix
+          }}{{ selectedChild.first_name }} {{ selectedChild.last_name }}
+        </div>
+        <div class="info-row">
+          <span>เลขบัตรประชาชน:</span> {{ selectedChild.citizen_id }}
+        </div>
+        <div class="info-row">
+          <span>ศาสนา:</span> {{ selectedChild.religion }}
+        </div>
+        <div class="info-row">
+          <span>กรุ๊ปเลือด:</span> {{ selectedChild.blood_type }}
+        </div>
+        <div class="info-row">
+          <span>สัญชาติ:</span> {{ selectedChild.nationality }}
+        </div>
+        <div class="info-row">
+          <span>เชื้อชาติ:</span> {{ selectedChild.ethnicity }}
+        </div>
+        <div class="info-row">
+          <span>วันเกิด:</span>
+          {{ selectedChild.birth_date | date : "dd/MM/yyyy" }}
+        </div>
+        <div class="info-row">
+          <span>เบอร์โทร:</span> {{ selectedChild.phone }}
+        </div>
+      </div>
+      <div class="child-section">
+        <h4>ที่อยู่ปัจจุบัน</h4>
+        <div class="info-row">
+          <span>บ้านเลขที่:</span> {{ selectedChild.currentAddress?.house_no }}
+        </div>
+        <div class="info-row">
+          <span>หมู่:</span> {{ selectedChild.currentAddress?.village_no }}
+        </div>
+        <div class="info-row">
+          <span>ถนน:</span> {{ selectedChild.currentAddress?.road }}
+        </div>
+        <div class="info-row">
+          <span>ซอย:</span> {{ selectedChild.currentAddress?.alley }}
+        </div>
+        <div class="info-row">
+          <span>ตำบล:</span> {{ selectedChild.currentAddress?.sub_district }}
+        </div>
+        <div class="info-row">
+          <span>อำเภอ:</span> {{ selectedChild.currentAddress?.district }}
+        </div>
+        <div class="info-row">
+          <span>จังหวัด:</span> {{ selectedChild.currentAddress?.province }}
+        </div>
+        <div class="info-row">
+          <span>รหัสไปรษณีย์:</span>
+          {{ selectedChild.currentAddress?.postal_code }}
+        </div>
+      </div>
+      <div class="child-section">
+        <h4>ที่อยู่ตามทะเบียนบ้าน</h4>
+        <div class="info-row">
+          <span>บ้านเลขที่:</span> {{ selectedChild.regAddress?.house_no }}
+        </div>
+        <div class="info-row">
+          <span>หมู่:</span> {{ selectedChild.regAddress?.village_no }}
+        </div>
+        <div class="info-row">
+          <span>ถนน:</span> {{ selectedChild.regAddress?.road }}
+        </div>
+        <div class="info-row">
+          <span>ซอย:</span> {{ selectedChild.regAddress?.alley }}
+        </div>
+        <div class="info-row">
+          <span>ตำบล:</span> {{ selectedChild.regAddress?.sub_district }}
+        </div>
+        <div class="info-row">
+          <span>อำเภอ:</span> {{ selectedChild.regAddress?.district }}
+        </div>
+        <div class="info-row">
+          <span>จังหวัด:</span> {{ selectedChild.regAddress?.province }}
+        </div>
+        <div class="info-row">
+          <span>รหัสไปรษณีย์:</span> {{ selectedChild.regAddress?.postal_code }}
+        </div>
+      </div>
+      <div class="child-section">
+        <h4>ข้อมูลบิดา</h4>
+        <div class="info-row">
+          <span>ชื่อ-นามสกุล:</span> {{ selectedChild.father?.prefix
+          }}{{ selectedChild.father?.full_name }}
+        </div>
+        <div class="info-row">
+          <span>อายุ:</span> {{ selectedChild.father?.age }}
+        </div>
+        <div class="info-row">
+          <span>เบอร์โทร:</span> {{ selectedChild.father?.phone }}
+        </div>
+        <div class="info-row">
+          <span>อาชีพ:</span> {{ selectedChild.father?.occupation }}
+        </div>
+        <div class="info-row">
+          <span>รายได้ต่อปี:</span> {{ selectedChild.father?.income_per_year }}
+        </div>
+      </div>
+      <div class="child-section">
+        <h4>ข้อมูลมารดา</h4>
+        <div class="info-row">
+          <span>ชื่อ-นามสกุล:</span> {{ selectedChild.mother?.prefix
+          }}{{ selectedChild.mother?.full_name }}
+        </div>
+        <div class="info-row">
+          <span>อายุ:</span> {{ selectedChild.mother?.age }}
+        </div>
+        <div class="info-row">
+          <span>เบอร์โทร:</span> {{ selectedChild.mother?.phone }}
+        </div>
+        <div class="info-row">
+          <span>อาชีพ:</span> {{ selectedChild.mother?.occupation }}
+        </div>
+        <div class="info-row">
+          <span>รายได้ต่อปี:</span> {{ selectedChild.mother?.income_per_year }}
+        </div>
+      </div>
+      <div class="child-section">
+        <h4>ข้อมูลผู้ปกครอง</h4>
+        <div class="info-row">
+          <span>ชื่อ-นามสกุล:</span> {{ selectedChild.guardian?.prefix
+          }}{{ selectedChild.guardian?.full_name }}
+        </div>
+        <div class="info-row">
+          <span>อายุ:</span> {{ selectedChild.guardian?.age }}
+        </div>
+        <div class="info-row">
+          <span>เบอร์โทร:</span> {{ selectedChild.guardian?.phone }}
+        </div>
+        <div class="info-row">
+          <span>ความสัมพันธ์:</span> {{ selectedChild.guardian?.relationship }}
+        </div>
+        <div class="info-row">
+          <span>อาชีพ:</span> {{ selectedChild.guardian?.occupation }}
+        </div>
+        <div class="info-row">
+          <span>รายได้ต่อปี:</span>
+          {{ selectedChild.guardian?.income_per_year }}
+        </div>
+      </div>
+    </div>
+    <div class="graph">
+      <h4 style="margin-top: 2rem; text-align: center;">กราฟแสดงการเจริญเติบโต (1-7 ขวบ)</h4>
+      <canvas
+        baseChart
+        [data]="growthChartData"
+        [options]="growthChartOptions"
+        [type]="'line'"
+        style="display: block; max-width: 600px"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>

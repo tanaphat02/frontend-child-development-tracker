@@ -1,0 +1,14 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>KIDSTEPS</h2>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <label for="username">USERNAME</label>
+      <input type="text" id="username" name="username" required [(ngModel)]="username" />
+
+      <label for="password">PASSWORD</label>
+      <input type="password" id="password" name="password" required [(ngModel)]="password" />
+
+      <button type="submit">LOGIN</button>
+    </form>
+  </div>
+</div>

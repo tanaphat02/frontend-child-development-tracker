@@ -1,0 +1,150 @@
+.container {
+  background-color: #f7f7f7;
+  padding: 3rem;
+  height: 81.5vh;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: "Sarabun", sans-serif;
+  font-style: normal;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.search-section input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  
+}
+
+.add-button {
+  background-color: #ffdf57;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.add-button:hover {
+  background-color: #ffd700;
+}
+
+.child-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+.child-table th,
+.child-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  font-family: 'Sarabun', sans-serif;
+}
+
+.child-table thead {
+  background-color: #f1f1f1;
+}
+
+.child-table td:last-child{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.child-table td:first-child{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.child-table td:nth-child(2) {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.child-table td:nth-child(3),
+.child-table td:nth-child(4) {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+
+.info-button {
+  background-color: #ffe68a;
+  border: 1px solid #e0d370;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.info-button:hover {
+  background-color: #ffd966;
+}
+
+.table-wrapper {
+  max-height: 550px; 
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.child-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f1f1f1;
+  z-index: 1;
+}
+
+.input {
+    width: 30%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: "Sarabun", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.save{
+  background-color: #4CAF50;
+  color: white;
+  font-size: medium;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.save:hover {
+  background-color: #45a049;
+}
+
+.button {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+}

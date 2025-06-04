@@ -1,0 +1,14 @@
+.homepage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-section {
+  text-align: center;
+}
+
+.logo {
+  width: 700px;
+}

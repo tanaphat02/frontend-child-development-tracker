@@ -1,0 +1,16 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px;
+  font-weight: bold;
+  background-color: #fff;
+  font-size: 1.5rem;
+  background: #ffffff;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(213, 247, 158, 1) 66%,
+    rgba(232, 223, 139, 1) 100%
+  );
+  
+}
